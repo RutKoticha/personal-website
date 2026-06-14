@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  /* Theme-customizable CSS variables */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc; /* Slate-50 */
+  --text-primary: #0f172a; /* Slate-900 */
+  --text-secondary: #475569; /* Slate-600 */
+  
+  /* Calm Accent colors */
+  --accent: #0284c7; /* Sky-600 */
+  --accent-hover: #0369a1; /* Sky-700 */
+  --accent-light: #e0f2fe; /* Sky-100 */
+  
+  --border: #e2e8f0; /* Slate-200 */
+}
+
+/* Tailwind v4 theme configuration */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom theme color mappings linked to our CSS variables */
+  --color-bg-main: var(--bg-primary);
+  --color-bg-alt: var(--bg-secondary);
+  --color-txt-main: var(--text-primary);
+  --color-txt-muted: var(--text-secondary);
+  --color-brand: var(--accent);
+  --color-brand-hover: var(--accent-hover);
+  --color-brand-light: var(--accent-light);
+  --color-border-line: var(--border);
+}
+
+/* Global resets and base layout definitions */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom minimal focus ring styles for high visibility and clean design */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+/* Custom scrollbar to keep layout minimal and premium */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* Slate-300 */
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* Slate-400 */
+}
