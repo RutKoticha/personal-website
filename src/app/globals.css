@@ -3,7 +3,7 @@
 :root {
   color-scheme: dark;
 
-  /* M3 Tonal Mapping on Slate */
+  /* Color Palette (Deep Slate & Golden Eclipse) */
   --bg-surface: #1c2128;
   --bg-surface-container: #22272e;
   --bg-surface-container-high: #181b21;
@@ -11,20 +11,21 @@
   --text-on-surface-variant: #8b949e;
 
   /* Accent Colors */
-  --accent-golden: #f1fa8c;
-  --accent-cyan: #8be9fd;
-  --accent-coral: #ff79c6;
+  --accent-golden: #f1fa8c; /* Primary Accent */
+  --accent-purple: #bd93f9; /* Tech Accent */
+  --accent-coral: #ff79c6;   /* Magic/Coral Accent */
+  --accent-cyan: #8be9fd;    /* Info Accent */
 
   /* Borders & Lines */
-  --border-custom: rgba(255, 255, 255, 0.1);
-  --border-custom-active: rgba(139, 233, 253, 0.3);
+  --border-custom: rgba(255, 255, 255, 0.12);
+  --border-custom-active: #f1fa8c;
 }
 
 /* Tailwind v4 theme configuration */
 @theme {
-  /* Fonts */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-fira-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Typography mappings */
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-google-sans-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Colors mapped to CSS Variables */
   --color-surface: var(--bg-surface);
@@ -34,11 +35,19 @@
   --color-on-surface-variant: var(--text-on-surface-variant);
   
   --color-accent-golden: var(--accent-golden);
-  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-purple: var(--accent-purple);
   --color-accent-coral: var(--accent-coral);
+  --color-accent-cyan: var(--accent-cyan);
   
   --color-border-custom: var(--border-custom);
   --color-border-custom-active: var(--border-custom-active);
+
+  /* Neo-brutalist flat offset shadows */
+  --shadow-neo-slate: 4px 4px 0px var(--text-on-surface);
+  --shadow-neo-gold: 4px 4px 0px var(--accent-golden);
+  --shadow-neo-purple: 4px 4px 0px var(--accent-purple);
+  --shadow-neo-pink: 4px 4px 0px var(--accent-coral);
+  --shadow-neo-cyan: 4px 4px 0px var(--accent-cyan);
 }
 
 /* Global resets and base layout definitions */
@@ -54,21 +63,23 @@ body {
   min-height: 100%;
 }
 
-/* Base headings default to Inter per Swiss typography rules, with monospace for top-level hero headings in components */
+/* Base headings default to Space Grotesk */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
+  font-weight: 700;
 }
 
-/* Technical Monospace blocks and labels */
+/* Monospace code elements */
 code, pre, .technical-label {
   font-family: var(--font-mono);
 }
 
-/* Dot Grid Pattern - low opacity rgba(255,255,255,0.03) */
-.dot-grid {
+/* Wavy Topographic Background Pattern - Opacity 3.5% */
+.wavy-grid {
   background-color: var(--bg-surface);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Cpath d='M0 20 Q 30 5, 60 20 T 120 20' fill='none' stroke='rgba(241, 250, 140, 0.035)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 /* Custom focus ring styling using Cyan accent */
@@ -83,25 +94,66 @@ code, pre, .technical-label {
 
 /* Custom scrollbars utilizing standard CSS scrollbar properties */
 * {
-  scrollbar-color: var(--text-on-surface-variant) var(--bg-surface-container);
+  scrollbar-color: var(--accent-golden) var(--bg-surface-container);
   scrollbar-width: thin;
 }
 
 /* WebKit fallback for custom scrollbars */
 @supports not (scrollbar-color: auto) {
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
     background: var(--bg-surface-container);
   }
   ::-webkit-scrollbar-thumb {
     background: var(--text-on-surface-variant);
-    border-radius: 3px;
+    border: 2px solid var(--bg-surface-container);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-cyan);
+    background: var(--accent-golden);
   }
 }
+
+/* Core Neo-brutalist element styles */
+.neo-card {
+  border: 2px solid var(--text-on-surface);
+  background-color: var(--bg-surface-container);
+  box-shadow: 4px 4px 0px var(--text-on-surface);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neo-card-gold {
+  border: 2px solid var(--text-on-surface);
+  background-color: var(--bg-surface-container);
+  box-shadow: 4px 4px 0px var(--accent-golden);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tactile button click switch animations */
+.neo-btn {
+  border: 2px solid var(--text-on-surface);
+  box-shadow: 4px 4px 0px var(--text-on-surface);
+  transition: all 0.1s ease;
+}
+
+.neo-btn:hover {
+  box-shadow: 4px 4px 0px var(--accent-golden);
+  border-color: var(--accent-golden);
+}
+
+.neo-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px transparent !important;
+}
+
+/* Animated terminal blinker cursor */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+
 

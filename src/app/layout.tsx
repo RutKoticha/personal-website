@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fira_Code } from "next/font/google";
+import { Space_Grotesk, Google_Sans_Code } from "next/font/google";
 import "./globals.css";
 
-const firaCode = Fira_Code({
+const googleSansCode = Google_Sans_Code({
   subsets: ["latin"],
-  variable: "--font-fira-code",
+  variable: "--font-google-sans-code",
   display: "swap",
 });
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -36,12 +36,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${firaCode.variable} h-full scroll-smooth antialiased`}
+      className={`${spaceGrotesk.variable} ${googleSansCode.variable} h-full scroll-smooth antialiased`}
     >
       <head>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
-      <body className="min-h-full flex flex-col bg-surface text-on-surface font-sans dot-grid">
+      <body className="min-h-full flex flex-col bg-surface text-on-surface font-sans wavy-grid">
         {children}
       </body>
     </html>
