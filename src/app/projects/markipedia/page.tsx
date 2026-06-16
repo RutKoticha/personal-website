@@ -6,71 +6,78 @@ import { PROJECTS } from "@/data/info";
 
 export default function MarkipediaPage() {
   const project = PROJECTS.find((p) => p.id === "markipedia") || PROJECTS[2];
+  const isCoralTech = (tech: string) => 
+    ["Postgres", "PostgreSQL", "Docker", "Fast API", "Node.js", "Express.js", "MongoDB", "Express"].includes(tech);
 
   return (
-    <div className="min-h-screen bg-bg-main py-12 sm:py-16 md:py-24">
+    <div className="min-h-screen bg-surface py-12 sm:py-16 md:py-24 dot-grid text-on-surface">
       <div className="mx-auto max-w-4xl px-6 sm:px-8">
         
         {/* Back Link */}
         <Link 
           href="/" 
-          className="inline-flex items-center text-sm font-semibold text-txt-muted hover:text-brand transition-colors mb-12 focus-ring rounded"
+          className="inline-flex items-center font-mono text-xs uppercase tracking-wider font-bold text-on-surface-variant hover:text-accent-cyan transition-colors mb-12 focus-ring rounded"
         >
-          <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          <svg className="mr-2 h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l-7.5-7.5M3 12h18" />
           </svg>
           Back to Portfolio
         </Link>
 
         {/* Title & Tagline */}
-        <div className="border-b border-border-line pb-8 mb-8">
-          <span className="inline-flex items-center rounded bg-brand-light px-2.5 py-0.5 text-xs font-semibold text-brand tracking-wider uppercase">
-            Case Study Template
+        <div className="border-b border-border-custom pb-8 mb-8 text-left">
+          <span className="inline-flex items-center rounded bg-surface-container border border-border-custom px-2.5 py-0.5 font-mono text-[9px] font-semibold text-accent-cyan tracking-wider uppercase">
+            Case Study
           </span>
-          <h1 className="font-display text-3xl font-extrabold tracking-tight text-txt-main sm:text-4xl mt-3">
+          <h1 className="font-mono text-2xl font-bold tracking-tight text-on-surface sm:text-3xl mt-3 uppercase leading-none">
             {project.title}
           </h1>
-          <p className="mt-4 font-sans text-lg text-txt-muted leading-relaxed">
+          <p className="mt-4 font-sans text-sm text-on-surface-variant leading-relaxed">
             {project.description}
           </p>
         </div>
 
         {/* Project Metadata Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-b border-border-line pb-8 mb-8 font-sans text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-b border-border-custom pb-8 mb-8 font-sans text-xs text-left">
           <div>
-            <h4 className="font-display font-bold text-txt-main uppercase tracking-wider text-xs">Role</h4>
-            <p className="mt-1 text-txt-muted">Full-Stack Engineer</p>
+            <h4 className="font-mono font-bold text-accent-cyan uppercase tracking-wider text-[10px]">Role</h4>
+            <p className="mt-1 text-on-surface-variant">Full-Stack Engineer</p>
           </div>
           <div>
-            <h4 className="font-display font-bold text-txt-main uppercase tracking-wider text-xs">Technologies</h4>
+            <h4 className="font-mono font-bold text-accent-cyan uppercase tracking-wider text-[10px]">Technologies</h4>
             <div className="mt-1 flex flex-wrap gap-1.5">
               {project.technologies.map((tech) => (
-                <span key={tech} className="text-txt-muted font-medium bg-bg-alt px-2 py-0.5 rounded border border-border-line/45 text-xs">
+                <span
+                  key={tech}
+                  className={`inline-flex items-center rounded-full bg-surface-container-high px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider border border-border-custom ${
+                    isCoralTech(tech) ? "text-accent-coral" : "text-accent-cyan"
+                  }`}
+                >
                   {tech}
                 </span>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="font-display font-bold text-txt-main uppercase tracking-wider text-xs">Repository</h4>
+            <h4 className="font-mono font-bold text-accent-cyan uppercase tracking-wider text-[10px]">Repository</h4>
             <p className="mt-1">
               <a 
                 href={project.github} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-brand hover:text-brand-hover hover:underline font-semibold focus-ring rounded"
+                className="font-mono text-accent-cyan hover:underline focus-ring rounded"
               >
-                GitHub Link
+                git://github/markipedia
               </a>
             </p>
           </div>
         </div>
 
-        {/* Detailed Sections (Edit here to populate info) */}
-        <article className="space-y-12 font-sans text-base leading-relaxed text-txt-muted">
+        {/* Detailed Sections */}
+        <article className="space-y-12 font-sans text-sm leading-relaxed text-on-surface-variant text-left">
           
           <section className="space-y-4">
-            <h2 className="font-display text-2xl font-bold text-txt-main">1. Project Overview</h2>
+            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">1. Project Overview</h2>
             <p>
               {project.longDescription}
             </p>
@@ -80,7 +87,7 @@ export default function MarkipediaPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="font-display text-2xl font-bold text-txt-main">2. Key Features</h2>
+            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">2. Key Features</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li><strong>Split-Pane Editor:</strong> Side-by-side Markdown editing pane and formatted HTML preview window.</li>
               <li><strong>Offline Workspace Sync:</strong> Local caching using browser storage layers to allow offline writing, syncing with the central database on network reconnection.</li>
@@ -89,17 +96,17 @@ export default function MarkipediaPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="font-display text-2xl font-bold text-txt-main">3. Architecture & Tech Decisions</h2>
+            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">3. Architecture & Tech Decisions</h2>
             <p>
-              Markipedia utilizes a client-side <strong>React</strong> UI supported by a lightweight <strong>Node.js/Express</strong> backend server, saving wiki directories to a <strong>MongoDB</strong> database cluster.
+              Markipedia utilizes a client-side <strong>React</strong> and <strong>Tailwind CSS</strong> interface supported by a lightweight <strong>Node.js/Express.js</strong> backend server.
             </p>
-            <blockquote className="border-l-4 border-brand bg-bg-alt px-4 py-3 text-sm text-txt-main italic rounded-r">
-              "We structured the editing engine around customized unified/remark parsing pipelines, allowing extensibility of standard GFM (GitHub Flavored Markdown) and mathematical LaTeX equations."
+            <blockquote className="border-l-2 border-accent-cyan bg-surface-container px-4 py-3 font-mono text-xs text-on-surface italic rounded-r">
+              &ldquo;We structured the editing engine around customized unified/remark parsing pipelines, allowing extensibility of standard GFM (GitHub Flavored Markdown) and mathematical LaTeX equations.&rdquo;
             </blockquote>
           </section>
 
           <section className="space-y-4">
-            <h2 className="font-display text-2xl font-bold text-txt-main">4. Challenges & Learnings</h2>
+            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">4. Challenges & Learnings</h2>
             <p>
               Synchronizing offline changes from multiple clients could lead to rewrite overrides. We integrated a simple timestamp-based version check. When updates conflict, the client is prompted with a side-by-side visual diff to resolve edits manually.
             </p>

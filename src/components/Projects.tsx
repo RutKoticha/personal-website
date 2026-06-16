@@ -5,38 +5,41 @@ import Link from "next/link";
 import { PROJECTS } from "../data/info";
 
 export default function Projects() {
+  const isCoralTech = (tech: string) => 
+    ["Postgres", "PostgreSQL", "Docker", "Fast API", "Node.js", "Express.js", "MongoDB", "Express"].includes(tech);
+
   return (
-    <section id="projects" className="bg-bg-main py-20">
+    <section id="projects" className="bg-surface py-20">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="max-w-2xl text-left mb-16">
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-txt-main sm:text-4xl">
-            Featured Projects
+          <h2 className="font-mono text-xl uppercase tracking-wider font-bold text-accent-cyan">
+            [04_] Selected_Projects
           </h2>
-          <p className="mt-4 font-sans text-base text-txt-muted">
-            A selection of software tools, libraries, and web portals I have designed and engineered.
+          <p className="mt-4 font-sans text-sm text-on-surface-variant leading-relaxed">
+            A registry of the software platforms, API portals, and developer toolings I have designed and engineered.
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {PROJECTS.map((project) => (
             <div 
               key={project.id} 
-              className="flex flex-col justify-between rounded-xl border border-border-line bg-bg-main p-6 shadow-sm hover:shadow-md hover:border-brand/40 transition-all duration-200"
+              className="flex flex-col justify-between rounded-sm border border-border-custom bg-surface-container p-6 hover:border-border-custom-active transition-all duration-200"
             >
               <div>
-                {/* Icon Placeholder or Decorative Header */}
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-light text-brand font-bold text-lg mb-4">
+                {/* Visual Header */}
+                <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-surface-container-high text-accent-cyan border border-border-custom font-mono font-bold text-sm mb-4 select-none">
                   {project.title.substring(0, 2).toUpperCase()}
                 </div>
 
-                <h3 className="font-display text-xl font-bold text-txt-main">
+                <h3 className="font-sans text-base font-bold text-on-surface">
                   {project.title}
                 </h3>
                 
-                <p className="mt-3 font-sans text-sm text-txt-muted leading-relaxed">
+                <p className="mt-3 font-sans text-xs text-on-surface-variant leading-relaxed min-h-[64px]">
                   {project.description}
                 </p>
 
@@ -45,7 +48,9 @@ export default function Projects() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="inline-flex items-center rounded bg-bg-alt px-2 py-0.5 font-sans text-[10px] font-semibold text-txt-muted uppercase tracking-wider border border-border-line/45"
+                      className={`inline-flex items-center rounded-full bg-surface-container-high px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider border border-border-custom ${
+                        isCoralTech(tech) ? "text-accent-coral" : "text-accent-cyan"
+                      }`}
                     >
                       {tech}
                     </span>
@@ -54,13 +59,13 @@ export default function Projects() {
               </div>
 
               {/* Action Link Footer */}
-              <div className="mt-8 pt-4 border-t border-border-line/40 flex items-center justify-between">
+              <div className="mt-8 pt-4 border-t border-border-custom/50 flex items-center justify-between">
                 <Link
                   href={`/projects/${project.id}`}
-                  className="inline-flex items-center font-sans text-sm font-bold text-brand hover:text-brand-hover transition-colors"
+                  className="inline-flex items-center font-mono text-xs font-bold uppercase tracking-wider text-accent-cyan hover:text-accent-cyan/80 transition-colors focus-ring rounded"
                 >
-                  View Case Study
-                  <svg className="ml-1.5 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+                  View Details
+                  <svg className="ml-1.5 h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
                 </Link>
@@ -70,7 +75,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-txt-muted hover:text-txt-main transition-colors focus-ring rounded-md p-1"
+                    className="text-on-surface-variant hover:text-accent-cyan transition-colors focus-ring rounded p-1"
                     aria-label={`${project.title} GitHub Repository`}
                   >
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -88,3 +93,4 @@ export default function Projects() {
     </section>
   );
 }
+

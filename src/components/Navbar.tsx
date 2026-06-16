@@ -15,16 +15,16 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border-line bg-bg-main/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-border-custom bg-surface/85 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="flex h-16 items-center justify-between">
           {/* Left Side: Brand Logo */}
           <div className="flex-shrink-0">
             <a 
               href="#home" 
-              className="font-display text-2xl font-extrabold tracking-tighter text-txt-main focus-ring rounded-md px-1"
+              className="font-mono text-xl font-bold tracking-tight text-on-surface focus-ring rounded px-1 flex items-center gap-1 select-none"
             >
-              RK.
+              <span className="text-accent-cyan">&gt;</span> RK<span className="text-accent-cyan animate-pulse">_</span>
             </a>
           </div>
 
@@ -35,7 +35,7 @@ export default function Navbar() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="font-sans text-sm font-medium text-txt-muted hover:text-brand transition-colors duration-200 focus-ring rounded-md px-2 py-1"
+                    className="font-sans text-xs uppercase tracking-wider font-semibold text-on-surface-variant hover:text-accent-cyan transition-colors duration-200 focus-ring rounded px-2 py-1"
                   >
                     {link.name}
                   </a>
@@ -49,7 +49,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 text-txt-muted hover:text-brand focus:outline-none focus-ring rounded-md"
+              className="inline-flex items-center justify-center p-2 text-on-surface-variant hover:text-accent-cyan focus:outline-none focus-ring rounded"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
             >
@@ -70,14 +70,14 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden border-b border-border-line bg-bg-main px-6 py-4" id="mobile-menu">
+        <div className="md:hidden border-b border-border-custom bg-surface px-6 py-4" id="mobile-menu">
           <ul className="space-y-4">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block font-sans text-base font-medium text-txt-muted hover:text-brand transition-colors duration-200 focus-ring rounded-md py-1"
+                  className="block font-sans text-sm uppercase tracking-wider font-semibold text-on-surface-variant hover:text-accent-cyan transition-colors duration-200 focus-ring rounded py-1"
                 >
                   {link.name}
                 </a>
@@ -89,3 +89,4 @@ export default function Navbar() {
     </header>
   );
 }
+

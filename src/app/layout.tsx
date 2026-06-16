@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Inter } from "next/font/google";
+import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 
-const montserrat = Montserrat({
+const firaCode = Fira_Code({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-fira-code",
   display: "swap",
 });
 
@@ -37,9 +36,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${montserrat.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${firaCode.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg-main text-txt-main font-sans">
+      <head>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      </head>
+      <body className="min-h-full flex flex-col bg-surface text-on-surface font-sans dot-grid">
         {children}
       </body>
     </html>

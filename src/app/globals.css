@@ -1,72 +1,107 @@
 @import "tailwindcss";
 
 :root {
-  /* Theme-customizable CSS variables */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc; /* Slate-50 */
-  --text-primary: #0f172a; /* Slate-900 */
-  --text-secondary: #475569; /* Slate-600 */
-  
-  /* Calm Accent colors */
-  --accent: #0284c7; /* Sky-600 */
-  --accent-hover: #0369a1; /* Sky-700 */
-  --accent-light: #e0f2fe; /* Sky-100 */
-  
-  --border: #e2e8f0; /* Slate-200 */
+  color-scheme: dark;
+
+  /* M3 Tonal Mapping on Slate */
+  --bg-surface: #1c2128;
+  --bg-surface-container: #22272e;
+  --bg-surface-container-high: #181b21;
+  --text-on-surface: #e6edf3;
+  --text-on-surface-variant: #8b949e;
+
+  /* Accent Colors */
+  --accent-golden: #f1fa8c;
+  --accent-cyan: #8be9fd;
+  --accent-coral: #ff79c6;
+
+  /* Borders & Lines */
+  --border-custom: rgba(255, 255, 255, 0.1);
+  --border-custom-active: rgba(139, 233, 253, 0.3);
 }
 
 /* Tailwind v4 theme configuration */
 @theme {
+  /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-fira-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Custom theme color mappings linked to our CSS variables */
-  --color-bg-main: var(--bg-primary);
-  --color-bg-alt: var(--bg-secondary);
-  --color-txt-main: var(--text-primary);
-  --color-txt-muted: var(--text-secondary);
-  --color-brand: var(--accent);
-  --color-brand-hover: var(--accent-hover);
-  --color-brand-light: var(--accent-light);
-  --color-border-line: var(--border);
+  /* Colors mapped to CSS Variables */
+  --color-surface: var(--bg-surface);
+  --color-surface-container: var(--bg-surface-container);
+  --color-surface-container-high: var(--bg-surface-container-high);
+  --color-on-surface: var(--text-on-surface);
+  --color-on-surface-variant: var(--text-on-surface-variant);
+  
+  --color-accent-golden: var(--accent-golden);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-coral: var(--accent-coral);
+  
+  --color-border-custom: var(--border-custom);
+  --color-border-custom-active: var(--border-custom-active);
 }
 
 /* Global resets and base layout definitions */
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--bg-surface);
+  color: var(--text-on-surface);
+  font-family: var(--font-sans);
+  min-height: 100%;
 }
 
+/* Base headings default to Inter per Swiss typography rules, with monospace for top-level hero headings in components */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
 }
 
-/* Custom minimal focus ring styles for high visibility and clean design */
+/* Technical Monospace blocks and labels */
+code, pre, .technical-label {
+  font-family: var(--font-mono);
+}
+
+/* Dot Grid Pattern - low opacity rgba(255,255,255,0.03) */
+.dot-grid {
+  background-color: var(--bg-surface);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom focus ring styling using Cyan accent */
 .focus-ring {
   outline: 2px solid transparent;
   outline-offset: 2px;
+  transition: outline-color 0.15s ease;
 }
 .focus-ring:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-cyan);
 }
 
-/* Custom scrollbar to keep layout minimal and premium */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Custom scrollbars utilizing standard CSS scrollbar properties */
+* {
+  scrollbar-color: var(--text-on-surface-variant) var(--bg-surface-container);
+  scrollbar-width: thin;
 }
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+
+/* WebKit fallback for custom scrollbars */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-surface-container);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--text-on-surface-variant);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
+  }
 }
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1; /* Slate-300 */
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; /* Slate-400 */
-}
+

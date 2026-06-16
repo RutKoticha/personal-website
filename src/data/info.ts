@@ -37,15 +37,16 @@ export const PERSONAL_INFO = {
     { name: "Hindi", level: "Fluent" },
     { name: "English", level: "Professional" }
   ],
-  resumeUrl: "#", // User can replace with link to a PDF
-  githubUrl: "https://github.com/RutKoticha", // Placeholder default
-  linkedinUrl: "https://linkedin.com/in/rut-koticha" // Placeholder default
+  resumeUrl: "#",
+  githubUrl: "https://github.com/RutKoticha",
+  linkedinUrl: "https://www.linkedin.com/in/rut-koticha-1131412b4"
 };
 
 export const SKILLS = {
-  languages: ["C", "C++", "Java", "Python", "PHP", "C#", "JavaScript", "TypeScript", "HTML", "CSS"],
-  technologies: ["React", "Angular", "Next.js", "Node.js", "Spring Boot", ".Net Core", ".Net Framework"],
-  databases: ["PostgreSQL", "MySQL", "Oracle SQL", "MongoDB"]
+  languages: ["C", "C++", "Java", "Python", "PHP", "JS", "TS", "HTML", "CSS"],
+  technologies: ["React", "Next.js", "Angular", "Tailwind CSS", "Spring Boot", "Shadcn/ui"],
+  databases: ["MySQL", "PostgreSQL", "MongoDB"],
+  tools: ["Git/Github", "Docker", "Linux", "Postman", "VS Code", "IntelliJ IDEA", "Neovim"]
 };
 
 export const EDUCATION: EducationItem[] = [
@@ -88,9 +89,6 @@ export const COMPETITIVE_EXAMS: CompetitiveExam[] = [
     year: "2023",
     metrics: {
       "Percentile": "98.45",
-      "Physics": "35.50 / 40",
-      "Chemistry": "36.75 / 40",
-      "Maths": "30.50 / 40",
       "Total": "102.75 / 120"
     }
   },
@@ -100,29 +98,22 @@ export const COMPETITIVE_EXAMS: CompetitiveExam[] = [
     metrics: {
       "NTA Score": "94.4545125",
       "All India Rank (AIR)": "62968",
-      "Physics": "95.18",
-      "Chemistry": "91.19",
-      "Maths": "80.76",
-      "Status": "Qualified for JEE Advanced"
     }
   }
 ];
 
 export const STATS = {
   leetcode: {
-    username: "RutKoticha",
-    solved: "250+",
-    rank: "Top 15%"
+    username: "koticharut",
+    solved: "100+",
+    rating: "Rating: 1,292",
+    url: "https://leetcode.com/u/koticharut/"
   },
   codeforces: {
     handle: "RutKoticha",
-    rating: "1400+",
-    division: "Specialist"
-  },
-  codechef: {
-    handle: "rut_koticha",
-    rating: "1600+",
-    stars: "3★"
+    rating: "893",
+    division: "Newbie",
+    url: "https://codeforces.com/profile/RutKoticha"
   }
 };
 
@@ -130,25 +121,25 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: "clinix",
     title: "Clinix",
-    description: "An advanced, highly-secure healthcare clinic management portal streamlining patient electronic health records (EHR) and schedules.",
+    description: "A clinic management system designed to help clinics manage their internal data like patients, appointments, finances etc.",
     longDescription: "Clinix is a comprehensive clinic management application designed to handle patient profiles, electronic health records (EHR), dynamic doctor scheduling, and real-time medical prescriptions. Built with security and clinical workflows in mind, it minimizes admin overhead while keeping critical medical records safely encrypted.",
-    technologies: ["React", "Spring Boot", "PostgreSQL", "Tailwind CSS"],
+    technologies: ["Angular", "Spring Boot", "Postgres", "Docker"],
     github: "https://github.com/RutKoticha/clinix"
   },
   {
     id: "sourcenode",
     title: "SourceNode",
-    description: "A fast, interactive graphical documentation and node-linking builder for tracking software dependency graphs.",
-    longDescription: "SourceNode is a developer productivity utility for visualizing and mapping complex code-level dependency graphs and microservices architecture. It allows developers to render structural relationships dynamically, trace event flows, and query nodes using a customized, minimal node editor UI.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
+    description: "An attempt to facilitate dev teams, tools they use everyday integrating realtime chat, kanban board for task management, secret management using secure vault and integration with Github to monitor repository activity.",
+    longDescription: "SourceNode is a developer productivity utility integrating realtime chat, a kanban board for task management, secret management using a secure vault, and integration with GitHub to monitor repository activity. It serves as a unified workspace for engineering teams.",
+    technologies: ["Next.js", "Tailwind CSS", "Spring Boot", "Fast API", "Docker", "Postgres"],
     github: "https://github.com/RutKoticha/sourcenode"
   },
   {
     id: "markipedia",
     title: "Markipedia",
-    description: "An offline-first collaborative Markdown wiki system featuring live editing previews and automated version history.",
-    longDescription: "Markipedia provides a fast, structured offline-first workspace for capturing team knowledge in Markdown format. Supporting side-by-side rendering, hierarchical article organization, local database caching, and change logs, it offers an elegant developer-friendly knowledge base.",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+    description: "Reimagination of Wikipedia to be like medium.com, articles written in markdown, simple ui, easy to read rendering of markdown etc.",
+    longDescription: "Markipedia provides a fast, structured wiki workspace for capturing team knowledge in Markdown format. Inspired by medium.com, it renders clean, easy-to-read markdown articles with live editing previews and automated version history.",
+    technologies: ["React", "Tailwind CSS", "Node.js", "Express.js"],
     github: "https://github.com/RutKoticha/markipedia"
   }
 ];
