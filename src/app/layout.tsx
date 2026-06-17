@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fira_Code } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const firaCode = Fira_Code({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-fira-code",
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -36,12 +36,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${firaCode.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
-      <body className="min-h-full flex flex-col bg-surface text-on-surface font-sans dot-grid">
+      <body className="min-h-full flex flex-col bg-surface text-on-surface font-sans wavy-bg">
         {children}
       </body>
     </html>

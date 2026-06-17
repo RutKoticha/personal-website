@@ -3,42 +3,43 @@
 :root {
   color-scheme: dark;
 
-  /* M3 Tonal Mapping on Slate */
+  /* M3 Tonal Mapping on Slate - Frosted Terminal */
   --bg-surface: #1c2128;
-  --bg-surface-container: #22272e;
-  --bg-surface-container-high: #181b21;
+  --bg-frosted: rgba(28, 33, 40, 0.6);
+  --bg-frosted-high: rgba(24, 27, 33, 0.85);
+  
   --text-on-surface: #e6edf3;
   --text-on-surface-variant: #8b949e;
 
   /* Accent Colors */
-  --accent-golden: #f1fa8c;
-  --accent-cyan: #8be9fd;
-  --accent-coral: #ff79c6;
+  --accent-golden: #f1fa8c; /* Primary Accent (Golden Eclipse) */
+  --accent-cyan: #8be9fd;   /* Syntax Accent (Cyan) */
+  --accent-purple: #bd93f9; /* Syntax Accent (Purple) */
 
   /* Borders & Lines */
-  --border-custom: rgba(255, 255, 255, 0.1);
-  --border-custom-active: rgba(139, 233, 253, 0.3);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-subtle-active: rgba(241, 250, 140, 0.25); /* Active highlight on Golden Eclipse */
 }
 
 /* Tailwind v4 theme configuration */
 @theme {
   /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-fira-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Colors mapped to CSS Variables */
   --color-surface: var(--bg-surface);
-  --color-surface-container: var(--bg-surface-container);
-  --color-surface-container-high: var(--bg-surface-container-high);
+  --color-frosted: var(--bg-frosted);
+  --color-frosted-high: var(--bg-frosted-high);
   --color-on-surface: var(--text-on-surface);
   --color-on-surface-variant: var(--text-on-surface-variant);
   
   --color-accent-golden: var(--accent-golden);
   --color-accent-cyan: var(--accent-cyan);
-  --color-accent-coral: var(--accent-coral);
+  --color-accent-purple: var(--accent-purple);
   
-  --color-border-custom: var(--border-custom);
-  --color-border-custom-active: var(--border-custom-active);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-subtle-active: var(--border-subtle-active);
 }
 
 /* Global resets and base layout definitions */
@@ -54,36 +55,38 @@ body {
   min-height: 100%;
 }
 
-/* Base headings default to Inter per Swiss typography rules, with monospace for top-level hero headings in components */
+/* Wavy Topographic SVG Background Pattern - Fixed & Ambient */
+.wavy-bg {
+  background-color: var(--bg-surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' width='100%25' height='100%25'%3E%3Cpath d='M-100,150 C200,80 350,320 600,220 C850,120 1000,380 1250,280 C1380,220 1480,310 1550,260' fill='none' stroke='rgba(255, 255, 255, 0.015)' stroke-width='1.2'/%3E%3Cpath d='M-100,300 C200,230 350,470 600,370 C850,270 1000,530 1250,430 C1380,370 1480,460 1550,410' fill='none' stroke='rgba(255, 255, 255, 0.015)' stroke-width='1.2'/%3E%3Cpath d='M-100,450 C200,380 350,620 600,520 C850,420 1000,680 1250,580 C1380,520 1480,610 1550,560' fill='none' stroke='rgba(255, 255, 255, 0.015)' stroke-width='1.2'/%3E%3Cpath d='M-100,600 C200,530 350,770 600,670 C850,570 1000,830 1250,730 C1380,670 1480,760 1550,710' fill='none' stroke='rgba(255, 255, 255, 0.012)' stroke-width='1.2'/%3E%3Cpath d='M-100,750 C200,680 350,920 600,820 C850,720 1000,980 1250,880 C1380,820 1480,910 1550,860' fill='none' stroke='rgba(255, 255, 255, 0.01)' stroke-width='1.2'/%3E%3Cpath d='M-100,50 C150,-20 300,180 500,120 C700,60 900,240 1100,180 C1300,120 1450,210 1550,160' fill='none' stroke='rgba(255, 255, 255, 0.015)' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Base headings default to Inter, monospace for accents and section labels */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
 }
 
 /* Technical Monospace blocks and labels */
-code, pre, .technical-label {
+code, pre, .technical-label, .font-mono {
   font-family: var(--font-mono);
 }
 
-/* Dot Grid Pattern - low opacity rgba(255,255,255,0.03) */
-.dot-grid {
-  background-color: var(--bg-surface);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Custom focus ring styling using Cyan accent */
+/* Custom focus ring styling using Golden Eclipse accent */
 .focus-ring {
   outline: 2px solid transparent;
   outline-offset: 2px;
   transition: outline-color 0.15s ease;
 }
 .focus-ring:focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid var(--accent-golden);
 }
 
 /* Custom scrollbars utilizing standard CSS scrollbar properties */
 * {
-  scrollbar-color: var(--text-on-surface-variant) var(--bg-surface-container);
+  scrollbar-color: var(--text-on-surface-variant) var(--bg-surface);
   scrollbar-width: thin;
 }
 
@@ -94,14 +97,51 @@ code, pre, .technical-label {
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--bg-surface-container);
+    background: var(--bg-surface);
   }
   ::-webkit-scrollbar-thumb {
     background: var(--text-on-surface-variant);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-cyan);
+    background: var(--accent-golden);
   }
 }
 
+/* --- Frosted Glass Container utility --- */
+.frosted-card {
+  background-color: var(--bg-frosted);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+}
+
+/* --- Tactile Keyboard Switch Animations --- */
+.tactile-btn {
+  position: relative;
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 0 0 var(--border-subtle-active);
+}
+.tactile-btn:hover {
+  transform: translateY(1px) scale(0.995);
+  box-shadow: 0 3px 0 0 var(--border-subtle-active);
+}
+.tactile-btn:active {
+  transform: translateY(2px) scale(0.99);
+  box-shadow: 0 2px 0 0 transparent;
+}
+
+.tactile-card {
+  position: relative;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s ease;
+  box-shadow: 0 4px 0 0 rgba(255, 255, 255, 0.02);
+}
+.tactile-card:hover {
+  transform: translateY(1px) scale(0.997);
+  box-shadow: 0 3px 0 0 rgba(255, 255, 255, 0.02);
+  border-color: var(--border-subtle-active);
+}
+.tactile-card:active {
+  transform: translateY(2px) scale(0.995);
+  box-shadow: 0 2px 0 0 transparent;
+}
