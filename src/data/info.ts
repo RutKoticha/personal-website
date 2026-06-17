@@ -16,16 +16,6 @@ export interface CompetitiveExam {
   metrics: { [key: string]: string | number };
 }
 
-export interface ProjectItem {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  technologies: string[];
-  link?: string;
-  github?: string;
-}
-
 export const PERSONAL_INFO = {
   name: "Rut Koticha",
   role: "Software Developer",
@@ -37,7 +27,7 @@ export const PERSONAL_INFO = {
     { name: "Hindi", level: "Fluent" },
     { name: "English", level: "Professional" }
   ],
-  resumeUrl: "#",
+  resumeUrl: "/Resume.pdf",
   githubUrl: "https://github.com/RutKoticha",
   linkedinUrl: "https://www.linkedin.com/in/rut-koticha-1131412b4"
 };
@@ -116,30 +106,3 @@ export const STATS = {
     url: "https://codeforces.com/profile/RutKoticha"
   }
 };
-
-export const PROJECTS: ProjectItem[] = [
-  {
-    id: "clinix",
-    title: "Clinix",
-    description: "A clinic management system designed to help clinics manage their internal data like patients, appointments, finances etc.",
-    longDescription: "Clinix is a comprehensive clinic management application designed to handle patient profiles, electronic health records (EHR), dynamic doctor scheduling, and real-time medical prescriptions. Built with security and clinical workflows in mind, it minimizes admin overhead while keeping critical medical records safely encrypted.",
-    technologies: ["Angular", "Spring Boot", "Postgres", "Docker"],
-    github: "https://github.com/RutKoticha/clinix"
-  },
-  {
-    id: "sourcenode",
-    title: "SourceNode",
-    description: "An attempt to facilitate dev teams, tools they use everyday integrating realtime chat, kanban board for task management, secret management using secure vault and integration with Github to monitor repository activity.",
-    longDescription: "SourceNode is a developer productivity utility integrating realtime chat, a kanban board for task management, secret management using a secure vault, and integration with GitHub to monitor repository activity. It serves as a unified workspace for engineering teams.",
-    technologies: ["Next.js", "Tailwind CSS", "Spring Boot", "Fast API", "Docker", "Postgres"],
-    github: "https://github.com/RutKoticha/sourcenode"
-  },
-  {
-    id: "markipedia",
-    title: "Markipedia",
-    description: "Reimagination of Wikipedia to be like medium.com, articles written in markdown, simple ui, easy to read rendering of markdown etc.",
-    longDescription: "Markipedia provides a fast, structured wiki workspace for capturing team knowledge in Markdown format. Inspired by medium.com, it renders clean, easy-to-read markdown articles with live editing previews and automated version history.",
-    technologies: ["React", "Tailwind CSS", "Node.js", "Express.js"],
-    github: "https://github.com/RutKoticha/markipedia"
-  }
-];

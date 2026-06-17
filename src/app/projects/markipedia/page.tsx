@@ -1,35 +1,39 @@
-"use client";
-
 import React from "react";
-import Link from "next/link";
-import { PROJECTS } from "@/data/info";
+import { getProjectById } from "@/data/projects";
+import { marked } from "marked";
+import Button from "@/components/Button";
+import "../markdown.css";
 
 export default function MarkipediaPage() {
-  const project = PROJECTS.find((p) => p.id === "markipedia") || PROJECTS[2];
-  const isCoralTech = (tech: string) => 
-    ["Postgres", "PostgreSQL", "Docker", "Fast API", "Node.js", "Express.js", "MongoDB", "Express"].includes(tech);
+  const project = getProjectById("markipedia");
+  if (!project) {
+    return (
+      <div className="min-h-screen flex items-center justify-center font-mono text-sm text-on-surface-variant">
+        Project not found.
+      </div>
+    );
+  }
+
+  const parsedHtml = marked.parse(project.content) as string;
 
   return (
-    <div className="min-h-screen bg-surface py-12 sm:py-16 md:py-24 dot-grid text-on-surface">
+    <div className="min-h-screen bg-transparent py-12 sm:py-16 md:py-24 text-on-surface">
       <div className="mx-auto max-w-4xl px-6 sm:px-8">
         
-        {/* Back Link */}
-        <Link 
+        {/* Back Button */}
+        <Button 
           href="/" 
-          className="inline-flex items-center font-mono text-xs uppercase tracking-wider font-bold text-on-surface-variant hover:text-accent-cyan transition-colors mb-12 focus-ring rounded"
+          className="mb-12"
         >
           <svg className="mr-2 h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l-7.5-7.5M3 12h18" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
           Back to Portfolio
-        </Link>
+        </Button>
 
-        {/* Title & Tagline */}
-        <div className="border-b border-border-custom pb-8 mb-8 text-left">
-          <span className="inline-flex items-center rounded bg-surface-container border border-border-custom px-2.5 py-0.5 font-mono text-[9px] font-semibold text-accent-cyan tracking-wider uppercase">
-            Case Study
-          </span>
-          <h1 className="font-mono text-2xl font-bold tracking-tight text-on-surface sm:text-3xl mt-3 uppercase leading-none">
+        {/* Title & Tagline (Frosted header) */}
+        <div className="rounded-sm border border-border-subtle bg-frosted p-8 mb-8 text-left">
+          <h1 className="font-mono text-2xl font-bold tracking-tight text-on-surface sm:text-3xl uppercase leading-none">
             {project.title}
           </h1>
           <p className="mt-4 font-sans text-sm text-on-surface-variant leading-relaxed">
@@ -38,20 +42,14 @@ export default function MarkipediaPage() {
         </div>
 
         {/* Project Metadata Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-b border-border-custom pb-8 mb-8 font-sans text-xs text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 rounded-sm border border-border-subtle bg-frosted p-6 mb-8 font-sans text-xs text-left">
           <div>
-            <h4 className="font-mono font-bold text-accent-cyan uppercase tracking-wider text-[10px]">Role</h4>
-            <p className="mt-1 text-on-surface-variant">Full-Stack Engineer</p>
-          </div>
-          <div>
-            <h4 className="font-mono font-bold text-accent-cyan uppercase tracking-wider text-[10px]">Technologies</h4>
-            <div className="mt-1 flex flex-wrap gap-1.5">
+            <h4 className="font-mono font-bold text-accent-golden uppercase tracking-wider text-[10px]">Technologies</h4>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className={`inline-flex items-center rounded-full bg-surface-container-high px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider border border-border-custom ${
-                    isCoralTech(tech) ? "text-accent-coral" : "text-accent-cyan"
-                  }`}
+                  className="inline-flex items-center rounded-sm bg-frosted-high px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider border border-border-subtle text-accent-cyan"
                 >
                   {tech}
                 </span>
@@ -59,60 +57,29 @@ export default function MarkipediaPage() {
             </div>
           </div>
           <div>
-            <h4 className="font-mono font-bold text-accent-cyan uppercase tracking-wider text-[10px]">Repository</h4>
+            <h4 className="font-mono font-bold text-accent-golden uppercase tracking-wider text-[10px]">Repository</h4>
             <p className="mt-1">
-              <a 
-                href={project.github} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="font-mono text-accent-cyan hover:underline focus-ring rounded"
-              >
-                git://github/markipedia
-              </a>
+              {project.github ? (
+                <a 
+                  href={project.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="font-mono text-accent-golden hover:underline focus-ring rounded"
+                >
+                  git://github/{project.id}
+                </a>
+              ) : (
+                <span className="font-mono text-on-surface-variant italic">No repository linked</span>
+              )}
             </p>
           </div>
         </div>
 
-        {/* Detailed Sections */}
-        <article className="space-y-12 font-sans text-sm leading-relaxed text-on-surface-variant text-left">
-          
-          <section className="space-y-4">
-            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">1. Project Overview</h2>
-            <p>
-              {project.longDescription}
-            </p>
-            <p>
-              Markipedia is engineered as an offline-first Wiki application. It aims to support developer teams in capturing, searching, and structuring documentation wiki pages with full editing previews, even without a steady network connection.
-            </p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">2. Key Features</h2>
-            <ul className="list-disc pl-5 space-y-2">
-              <li><strong>Split-Pane Editor:</strong> Side-by-side Markdown editing pane and formatted HTML preview window.</li>
-              <li><strong>Offline Workspace Sync:</strong> Local caching using browser storage layers to allow offline writing, syncing with the central database on network reconnection.</li>
-              <li><strong>Nested Articles Hierarchy:</strong> Tree-structure file explorer directories for cataloging documents.</li>
-            </ul>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">3. Architecture & Tech Decisions</h2>
-            <p>
-              Markipedia utilizes a client-side <strong>React</strong> and <strong>Tailwind CSS</strong> interface supported by a lightweight <strong>Node.js/Express.js</strong> backend server.
-            </p>
-            <blockquote className="border-l-2 border-accent-cyan bg-surface-container px-4 py-3 font-mono text-xs text-on-surface italic rounded-r">
-              &ldquo;We structured the editing engine around customized unified/remark parsing pipelines, allowing extensibility of standard GFM (GitHub Flavored Markdown) and mathematical LaTeX equations.&rdquo;
-            </blockquote>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="font-sans text-base font-bold text-on-surface uppercase tracking-wide">4. Challenges & Learnings</h2>
-            <p>
-              Synchronizing offline changes from multiple clients could lead to rewrite overrides. We integrated a simple timestamp-based version check. When updates conflict, the client is prompted with a side-by-side visual diff to resolve edits manually.
-            </p>
-          </section>
-
-        </article>
+        {/* Detailed Sections parsed from Markdown */}
+        <article 
+          className="markdown-content rounded-sm border border-border-subtle bg-frosted p-8 sm:p-12 space-y-12 font-sans text-sm leading-relaxed text-on-surface-variant text-left"
+          dangerouslySetInnerHTML={{ __html: parsedHtml }}
+        />
 
       </div>
     </div>
