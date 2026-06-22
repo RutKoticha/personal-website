@@ -46,11 +46,6 @@ export default function Hero() {
                 alt="Rut Koticha - Profile" 
                 className="w-full h-full object-cover rounded-lg opacity-80"
               />
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <span className="font-mono text-[10px] text-on-surface-variant/40 uppercase tracking-widest bg-surface/80 px-3 py-1.5 rounded-sm border border-border-subtle">
-                  Profile Placeholder
-                </span>
-              </div>
             </div>
           </div>
 
