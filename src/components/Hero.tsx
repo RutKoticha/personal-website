@@ -42,7 +42,7 @@ export default function Hero() {
           <div className="lg:col-span-5 flex justify-start lg:justify-end w-full">
             <div className="w-full max-w-sm aspect-square relative rounded-lg border border-border-subtle bg-frosted overflow-hidden flex items-center justify-center">
               <img 
-                src="#" 
+                src="/rut-koticha-profile-picture.png"
                 alt="Rut Koticha - Profile" 
                 className="w-full h-full object-cover rounded-lg opacity-80"
               />
