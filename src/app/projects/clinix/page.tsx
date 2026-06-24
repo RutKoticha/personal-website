@@ -2,6 +2,7 @@ import React from "react";
 import { getProjectById } from "@/data/projects";
 import { marked } from "marked";
 import Button from "@/components/Button";
+import ClinixFeedback from "@/components/ClinixFeedback";
 import "../markdown.css";
 
 export default function ClinixPage() {
@@ -80,6 +81,9 @@ export default function ClinixPage() {
           className="markdown-content rounded-sm border border-border-subtle bg-frosted p-8 sm:p-12 space-y-12 font-sans text-sm leading-relaxed text-on-surface-variant text-left"
           dangerouslySetInnerHTML={{ __html: parsedHtml }}
         />
+
+        {/* Client Endorsement Certificate & Feedback */}
+        <ClinixFeedback />
 
       </div>
     </div>
