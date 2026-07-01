@@ -27,7 +27,7 @@ export const PERSONAL_INFO = {
     { name: "Hindi", level: "Fluent" },
     { name: "English", level: "Professional" }
   ],
-  resumeUrl: "/Resume.pdf",
+  resumeUrl: "/Rut_Koticha_Resume.pdf",
   githubUrl: "https://github.com/RutKoticha",
   linkedinUrl: "https://www.linkedin.com/in/rut-koticha-1131412b4"
 };
